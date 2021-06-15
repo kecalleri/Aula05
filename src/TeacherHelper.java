@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 public class TeacherHelper {
 
-	public static final double horaAula = 17.50;
+	//public static final double horaAula = 17.50;
 	public static void main(String[] args) {
 		int opcao=0, numeroAulas, qtdeAlunos, i;
-		double salarioBase, horaAtividade, descansoSemanalRemunerado, salario, notaAluno, mediaAlunos;
+		double salarioBase, horaAtividade, descansoSemanalRemunerado, salario, notaAluno, mediaAlunos, horaAula;
 		
 		Random gerador = new Random();
 		
@@ -18,6 +18,7 @@ public class TeacherHelper {
 			System.out.println("1 - Calcular salário");
 			System.out.println("2 - Calcular média de notas dos alunos");
 			System.out.println("3 - Exibir a motivação do dia!");
+			System.out.println("4 - Sair do sistema.");
 			opcao = leitor.nextInt();
 			
 			switch (opcao) {
@@ -27,7 +28,11 @@ public class TeacherHelper {
 				 * http://www1.sinprosp.org.br/guia_consultas.asp?mat=8*/
 				System.out.println("Para calcular seu salário base precisamos saber quantas aulas semanais o professor tem na instituição");
 				numeroAulas = leitor.nextInt();
-				salarioBase = numeroAulas * 4.5 * horaAula;
+				
+				System.out.println("Qual é o valor da hora-aula praticada nesta instituição?");
+				horaAula = leitor.nextDouble();
+				
+			salarioBase = numeroAulas * 4.5 * horaAula;
 				horaAtividade = salarioBase * 0.05;
 				descansoSemanalRemunerado = (salarioBase + horaAtividade) / 6;
 				salario = salarioBase + horaAtividade + descansoSemanalRemunerado;
@@ -48,6 +53,7 @@ public class TeacherHelper {
 					System.out.println("Digite a nota do " + (i+1) + "º aluno:");
 					notaAluno = leitor.nextDouble();
 					mediaAlunos = mediaAlunos + notaAluno;
+					i = i + 1;
 				}
 				mediaAlunos = mediaAlunos / qtdeAlunos;
 				System.out.println("A média de notas dos alunos dessa turma é " + mediaAlunos);
@@ -56,6 +62,8 @@ public class TeacherHelper {
 			case 3:
 				
 				switch(gerador.nextInt(7)) {
+				case 0:
+					System.out.println("Faça ou não faça, tentativa não ha");
 				case 1:
 					System.out.println("Você é um professor incrível!");
 					break;
